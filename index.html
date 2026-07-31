@@ -2,7 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes"
+    />
     <title>YFC · Yangon Fitness Club</title>
     <!-- Font Awesome -->
     <link
@@ -41,6 +44,9 @@
         </a>
       </div>
 
+      <!-- Mobile Overlay -->
+      <div class="nav-overlay" id="navOverlay"></div>
+
       <ul class="nav-links" id="navLinks">
         <li><a href="#" class="home-link" data-page="home">Home</a></li>
         <li><a href="#" data-page="about">About Us</a></li>
@@ -64,6 +70,12 @@
           >
             <i class="fas fa-user-circle"></i> My Account
           </a>
+        </li>
+        <!-- Mobile close button -->
+        <li class="close-menu-item">
+          <button class="close-menu-btn" id="closeMenuBtn">
+            <i class="fas fa-times"></i> Close Menu
+          </button>
         </li>
       </ul>
 
@@ -358,7 +370,7 @@
       </div>
     </section>
 
-    <!-- ========== TRAINER (5 coaches in one row) ========== -->
+    <!-- ========== TRAINER ========== -->
     <section id="trainer" class="page">
       <div class="page-title">
         <i class="fas fa-chalkboard-teacher"></i> Trainer Page
@@ -370,11 +382,11 @@
           <div class="trainer-avatar">
             <img
               src="images/Screenshot 2026-07-31 102211.png"
-              alt="Main Trainer(Ko Ko Htet Aung)"
+              alt="Main Trainer"
             />
           </div>
-          <h3>Main Trainer(Ko Ko Htet Aung)</h3>
-          <div class="trainer-title"> Strength &amp; Conditioning</div>
+          <h3>Main Trainer</h3>
+          <div class="trainer-title">Strength &amp; Conditioning</div>
           <p>10+ years experience. Former collegiate athlete.</p>
           <div class="click-hint">
             <i class="fas fa-mouse-pointer"></i> click for bio
@@ -529,7 +541,7 @@
         style="
           background: #111;
           border-radius: 20px;
-          padding: 2.5rem;
+          padding: 2rem 1.5rem;
           border: 1px solid #2a2a2a;
         "
       >
@@ -537,7 +549,7 @@
           style="
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 2rem;
+            gap: 1rem;
             max-width: 600px;
             margin: 0 auto;
           "
@@ -545,7 +557,7 @@
           <div
             style="
               background: #1a1a1a;
-              padding: 1.5rem;
+              padding: 1.2rem;
               border-radius: 12px;
               border: 1px solid #2a2a2a;
               text-align: center;
@@ -553,12 +565,17 @@
           >
             <i
               class="fas fa-user"
-              style="font-size: 2.5rem; color: #f48024; margin-bottom: 0.5rem"
+              style="font-size: 2rem; color: #f48024; margin-bottom: 0.3rem"
             ></i>
-            <p style="color: #888; font-size: 0.8rem">Name</p>
+            <p style="color: #888; font-size: 0.7rem">Name</p>
             <p
               id="profileName"
-              style="color: #fff; font-size: 1.2rem; font-weight: 600"
+              style="
+                color: #fff;
+                font-size: 1rem;
+                font-weight: 600;
+                word-break: break-all;
+              "
             >
               —
             </p>
@@ -566,7 +583,7 @@
           <div
             style="
               background: #1a1a1a;
-              padding: 1.5rem;
+              padding: 1.2rem;
               border-radius: 12px;
               border: 1px solid #2a2a2a;
               text-align: center;
@@ -574,12 +591,17 @@
           >
             <i
               class="fas fa-envelope"
-              style="font-size: 2.5rem; color: #f48024; margin-bottom: 0.5rem"
+              style="font-size: 2rem; color: #f48024; margin-bottom: 0.3rem"
             ></i>
-            <p style="color: #888; font-size: 0.8rem">Email</p>
+            <p style="color: #888; font-size: 0.7rem">Email</p>
             <p
               id="profileEmail"
-              style="color: #fff; font-size: 1.2rem; font-weight: 600"
+              style="
+                color: #fff;
+                font-size: 1rem;
+                font-weight: 600;
+                word-break: break-all;
+              "
             >
               —
             </p>
@@ -587,7 +609,7 @@
           <div
             style="
               background: #1a1a1a;
-              padding: 1.5rem;
+              padding: 1.2rem;
               border-radius: 12px;
               border: 1px solid #2a2a2a;
               text-align: center;
@@ -595,12 +617,12 @@
           >
             <i
               class="fas fa-phone"
-              style="font-size: 2.5rem; color: #f48024; margin-bottom: 0.5rem"
+              style="font-size: 2rem; color: #f48024; margin-bottom: 0.3rem"
             ></i>
-            <p style="color: #888; font-size: 0.8rem">Phone</p>
+            <p style="color: #888; font-size: 0.7rem">Phone</p>
             <p
               id="profilePhone"
-              style="color: #fff; font-size: 1.2rem; font-weight: 600"
+              style="color: #fff; font-size: 1rem; font-weight: 600"
             >
               —
             </p>
@@ -608,7 +630,7 @@
           <div
             style="
               background: #1a1a1a;
-              padding: 1.5rem;
+              padding: 1.2rem;
               border-radius: 12px;
               border: 1px solid #2a2a2a;
               text-align: center;
@@ -616,12 +638,12 @@
           >
             <i
               class="fas fa-dumbbell"
-              style="font-size: 2.5rem; color: #f48024; margin-bottom: 0.5rem"
+              style="font-size: 2rem; color: #f48024; margin-bottom: 0.3rem"
             ></i>
-            <p style="color: #888; font-size: 0.8rem">Plan</p>
+            <p style="color: #888; font-size: 0.7rem">Plan</p>
             <p
               id="profilePlan"
-              style="color: #fff; font-size: 1.2rem; font-weight: 600"
+              style="color: #fff; font-size: 1rem; font-weight: 600"
             >
               —
             </p>
@@ -629,7 +651,7 @@
           <div
             style="
               background: #1a1a1a;
-              padding: 1.5rem;
+              padding: 1.2rem;
               border-radius: 12px;
               border: 1px solid #2a2a2a;
               text-align: center;
@@ -638,12 +660,12 @@
           >
             <i
               class="fas fa-user-tie"
-              style="font-size: 2.5rem; color: #f48024; margin-bottom: 0.5rem"
+              style="font-size: 2rem; color: #f48024; margin-bottom: 0.3rem"
             ></i>
-            <p style="color: #888; font-size: 0.8rem">Coach</p>
+            <p style="color: #888; font-size: 0.7rem">Coach</p>
             <p
               id="profileCoach"
-              style="color: #fff; font-size: 1.2rem; font-weight: 600"
+              style="color: #fff; font-size: 1rem; font-weight: 600"
             >
               —
             </p>
@@ -652,16 +674,16 @@
         <div
           style="
             text-align: center;
-            margin-top: 2rem;
-            padding-top: 1.5rem;
+            margin-top: 1.5rem;
+            padding-top: 1.2rem;
             border-top: 1px solid #2a2a2a;
           "
         >
-          <p style="color: #666; font-size: 0.9rem">
+          <p style="color: #666; font-size: 0.85rem">
             Member since <span id="profileDate" style="color: #aaa">—</span>
           </p>
         </div>
-        <div style="text-align: center; margin-top: 1.5rem">
+        <div style="text-align: center; margin-top: 1.2rem">
           <button id="logoutBtn" class="logout-btn">
             <i class="fas fa-sign-out-alt"></i> Logout
           </button>
@@ -820,17 +842,17 @@
               "
             >
               <option value="">-- Select a Coach --</option>
-              <option value="Coach Min">
+              <option value="Trainer Ko Ko Htet Aung">
                 Trainer Ko Ko Htet Aung - Strength & Conditioning
               </option>
-              <option value="Coach Thiri">
+              <option value="Trainer Sit Aung">
                 Trainer Sit Aung - Nutrition & Mobility
               </option>
-              <option value="Coach Zaw">
+              <option value="Trainer Chit Lin Phyu">
                 Trainer Chit Lin Phyu - Olympic & Powerlifting
               </option>
               <option value="Coach Zumba">Coach Zumba - Zumba & Dance</option>
-              <option value="Coach Hnin">
+              <option value="Trainer Khant">
                 Trainer Khant - Fitness & Mindfulness
               </option>
             </select>

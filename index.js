@@ -3,6 +3,10 @@
   const navLinks = document.querySelectorAll(".nav-links a:not(.home-link)");
   const hiddenHomeLink = document.querySelector(".nav-links .home-link");
   const pages = document.querySelectorAll(".page");
+  const navOverlay = document.getElementById("navOverlay");
+  const menuToggle = document.getElementById("menuToggle");
+  const closeMenuBtn = document.getElementById("closeMenuBtn");
+  const navUl = document.getElementById("navLinks");
 
   function showPage(pageId) {
     pages.forEach((p) => p.classList.remove("active"));
@@ -12,15 +16,68 @@
     if (pageId && pageId !== "home") history.pushState(null, "", "#" + pageId);
     else history.pushState(null, "", "#");
     window.scrollTo({ top: 0, behavior: "smooth" });
+    closeMobileMenu();
   }
 
+  // Mobile menu functions
+  function openMobileMenu() {
+    navUl.classList.add("open");
+    navOverlay.classList.add("active");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeMobileMenu() {
+    navUl.classList.remove("open");
+    navOverlay.classList.remove("active");
+    document.body.style.overflow = "";
+  }
+
+  function toggleMobileMenu() {
+    if (navUl.classList.contains("open")) {
+      closeMobileMenu();
+    } else {
+      openMobileMenu();
+    }
+  }
+
+  // Menu toggle
+  if (menuToggle) {
+    menuToggle.addEventListener("click", function (e) {
+      e.stopPropagation();
+      toggleMobileMenu();
+    });
+  }
+
+  // Close menu button
+  if (closeMenuBtn) {
+    closeMenuBtn.addEventListener("click", closeMobileMenu);
+  }
+
+  // Overlay click to close
+  if (navOverlay) {
+    navOverlay.addEventListener("click", closeMobileMenu);
+  }
+
+  // Close menu when clicking a link
   navLinks.forEach((link) => {
     link.addEventListener("click", function (e) {
-      e.preventDefault();
-      const pageId = this.getAttribute("data-page");
-      if (pageId) showPage(pageId);
+      if (window.innerWidth <= 768) {
+        closeMobileMenu();
+      }
     });
   });
+
+  // Navigation clicks
+  navLinks.forEach((link) => {
+    link.addEventListener("click", function (e) {
+      const pageId = this.getAttribute("data-page");
+      if (pageId) {
+        e.preventDefault();
+        showPage(pageId);
+      }
+    });
+  });
+
   if (hiddenHomeLink) {
     hiddenHomeLink.addEventListener("click", function (e) {
       e.preventDefault();
@@ -28,11 +85,14 @@
     });
   }
 
+  // Hash change
   window.addEventListener("hashchange", function () {
     const hash = window.location.hash.replace("#", "");
     if (hash && document.getElementById(hash)) showPage(hash);
     else showPage("home");
   });
+
+  // Load
   window.addEventListener("load", function () {
     const hash = window.location.hash.replace("#", "");
     if (hash && document.getElementById(hash)) showPage(hash);
@@ -40,23 +100,20 @@
       showPage("home");
       if (window.location.hash) history.pushState(null, "", "#");
     }
+    // Check if profile should be visible
+    if (memberData) {
+      showProfileNav();
+    }
   });
 
-  const toggleBtn = document.getElementById("menuToggle");
-  const navUl = document.getElementById("navLinks");
-  if (toggleBtn && navUl) {
-    toggleBtn.addEventListener("click", function () {
-      navUl.style.display =
-        navUl.style.display === "none" || navUl.style.display === ""
-          ? "flex"
-          : "none";
-    });
-    window.addEventListener("resize", function () {
-      if (window.innerWidth > 768) navUl.style.display = "flex";
-      else if (navUl.style.display === "") navUl.style.display = "flex";
-    });
-  }
+  // Resize - close mobile menu on desktop
+  window.addEventListener("resize", function () {
+    if (window.innerWidth > 768) {
+      closeMobileMenu();
+    }
+  });
 
+  // Logo click
   const logoLink = document.getElementById("logoLink");
   if (logoLink) {
     logoLink.addEventListener("click", function (e) {
@@ -65,6 +122,7 @@
     });
   }
 
+  // Start Program button
   const startBtn = document.getElementById("startProgramBtn");
   if (startBtn) {
     startBtn.addEventListener("click", function (e) {
@@ -82,7 +140,7 @@
   let autoScrollInterval = null;
 
   function getCardWidth() {
-    const card = slider.querySelector(".env-card");
+    const card = slider?.querySelector(".env-card");
     if (card) {
       const gap = 24;
       return card.offsetWidth + gap;
@@ -91,6 +149,7 @@
   }
 
   function getMaxIndex() {
+    if (!slider) return 0;
     const totalCards = slider.querySelectorAll(".env-card").length;
     const containerWidth = slider.parentElement.offsetWidth - 40;
     const cardW = getCardWidth();
@@ -99,6 +158,7 @@
   }
 
   function updateDots() {
+    if (!dotsContainer) return;
     const maxIndex = getMaxIndex();
     dotsContainer.innerHTML = "";
     for (let i = 0; i <= maxIndex; i++) {
@@ -116,6 +176,7 @@
   }
 
   function scrollToIndex() {
+    if (!slider) return;
     const width = getCardWidth();
     slider.scrollTo({ left: currentIndex * width, behavior: "smooth" });
   }
@@ -201,22 +262,22 @@
     });
   }
 
-  // ----- TRAINER DATA (5 coaches) -----
+  // ----- TRAINER DATA -----
   const trainerData = {
     min: {
-      name: "Coach Htet",
+      name: "Trainer Ko Ko Htet Aung",
       title: "⚡ Strength & Conditioning",
       bio: "Trainer Ko Ko Htet Aung is a certified strength and conditioning specialist with over 10 years of experience. He has worked with collegiate athletes and recreational lifters alike, focusing on building raw power and injury prevention.",
       img: "images/Screenshot 2026-07-31 102211.png",
     },
     thiri: {
-      name: "Coach Sit",
+      name: "Trainer Sit Aung",
       title: "🥗 Nutrition & Mobility",
       bio: "Trainer Sit Aung is a nutrition coach and mobility expert. She helps members recover smarter, improve joint health, and fuel their bodies for peak performance — both in and out of the gym.",
       img: "images/Screenshot 2026-07-31 102219.png",
     },
     zaw: {
-      name: "Coach Chit Lin Phyu",
+      name: "Trainer Chit Lin Phyu",
       title: "🏋️ Olympic & Powerlifting",
       bio: "Trainer Chit Lin Phyu is a former national-level competitor in Olympic weightlifting and powerlifting. He specializes in explosive strength, technique refinement, and competition preparation for athletes.",
       img: "images/Screenshot 2026-07-31 102235.png",
@@ -228,9 +289,9 @@
       img: "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=200&h=200&fit=crop&crop=face",
     },
     hnin: {
-      name: "Coach Khant",
-      title: "🧘 Yoga & Mindfulness",
-      bio: "Trainer Khant is a certified yoga instructor with over 8 years of teaching experience. She specializes in Hatha and Vinyasa yoga, helping members improve flexibility, reduce stress, and find inner balance. Her classes are suitable for all levels, from beginners to advanced practitioners.",
+      name: "Trainer Khant",
+      title: "🧘 Fitness & Mindfulness",
+      bio: "Trainer Khant is a certified yoga instructor with over 8 years of teaching experience. He specializes in Hatha and Vinyasa yoga, helping members improve flexibility, reduce stress, and find inner balance. His classes are suitable for all levels.",
       img: "images/Screenshot 2026-07-31 102241.png",
     },
   };
@@ -356,6 +417,8 @@
   const profileDate = document.getElementById("profileDate");
   const logoutBtn = document.getElementById("logoutBtn");
 
+  let memberData = null;
+
   const planData = {
     monthly: { name: "Monthly", price: "60,000 MMK" },
     quarterly: { name: "3 Months", price: "150,000 MMK" },
@@ -364,37 +427,49 @@
   let selectedPlan = "monthly";
 
   function showProfileNav() {
-    profileNavLink.style.display = "inline-block";
+    if (profileNavLink) {
+      profileNavLink.style.display = "inline-block";
+      if (window.innerWidth <= 768) {
+        profileNavLink.classList.add("show-mobile");
+      }
+    }
   }
 
   function hideProfileNav() {
-    profileNavLink.style.display = "none";
+    if (profileNavLink) {
+      profileNavLink.style.display = "none";
+      profileNavLink.classList.remove("show-mobile");
+    }
   }
 
   function updateProfile(data) {
-    profileName.textContent = data.name;
-    profileEmail.textContent = data.email;
-    profilePhone.textContent = data.phone;
-    profilePlan.textContent = planData[data.plan].name;
-    profileCoach.textContent = data.coach;
+    memberData = data;
+    if (profileName) profileName.textContent = data.name;
+    if (profileEmail) profileEmail.textContent = data.email;
+    if (profilePhone) profilePhone.textContent = data.phone;
+    if (profilePlan) profilePlan.textContent = planData[data.plan].name;
+    if (profileCoach) profileCoach.textContent = data.coach;
     const now = new Date();
-    profileDate.textContent = now.toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
+    if (profileDate)
+      profileDate.textContent = now.toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      });
     showProfileNav();
+    // Update coach select options to match selected
   }
 
   function clearProfile() {
-    profileName.textContent = "—";
-    profileEmail.textContent = "—";
-    profilePhone.textContent = "—";
-    profilePlan.textContent = "—";
-    profileCoach.textContent = "—";
-    profileDate.textContent = "—";
+    memberData = null;
+    if (profileName) profileName.textContent = "—";
+    if (profileEmail) profileEmail.textContent = "—";
+    if (profilePhone) profilePhone.textContent = "—";
+    if (profilePlan) profilePlan.textContent = "—";
+    if (profileCoach) profileCoach.textContent = "—";
+    if (profileDate) profileDate.textContent = "—";
     hideProfileNav();
-    if (document.getElementById("profile").classList.contains("active")) {
+    if (document.getElementById("profile")?.classList.contains("active")) {
       showPage("home");
     }
   }
@@ -414,12 +489,12 @@
       const plan = this.getAttribute("data-plan");
       selectedPlan = plan;
       const data = planData[plan];
-      checkoutPlanDisplay.textContent = data.name;
-      checkoutPriceDisplay.textContent = data.price;
-      checkoutModal.classList.add("active");
+      if (checkoutPlanDisplay) checkoutPlanDisplay.textContent = data.name;
+      if (checkoutPriceDisplay) checkoutPriceDisplay.textContent = data.price;
+      if (checkoutModal) checkoutModal.classList.add("active");
       document.body.style.overflow = "hidden";
-      checkoutFeedback.style.display = "none";
-      checkoutForm.reset();
+      if (checkoutFeedback) checkoutFeedback.style.display = "none";
+      if (checkoutForm) checkoutForm.reset();
     });
   });
 
@@ -484,6 +559,7 @@
   });
 
   function showCheckoutFeedback(message, type) {
+    if (!checkoutFeedback) return;
     checkoutFeedback.textContent = message;
     checkoutFeedback.className = "form-feedback " + type;
     checkoutFeedback.style.display = "block";
@@ -498,45 +574,48 @@
   const formFeedback = document.getElementById("formFeedback");
   const OFFICIAL_EMAIL = "athenajneo2004@gmail.com";
 
-  contactForm.addEventListener("submit", function (e) {
-    e.preventDefault();
+  if (contactForm) {
+    contactForm.addEventListener("submit", function (e) {
+      e.preventDefault();
 
-    const name = document.getElementById("userName").value.trim();
-    const email = document.getElementById("userEmail").value.trim();
-    const message = document.getElementById("userMessage").value.trim();
+      const name = document.getElementById("userName").value.trim();
+      const email = document.getElementById("userEmail").value.trim();
+      const message = document.getElementById("userMessage").value.trim();
 
-    if (!name || !email || !message) {
-      showFeedback("Please fill in all fields.", "error");
-      return;
-    }
-    if (!isValidEmail(email)) {
-      showFeedback("Please enter a valid email address.", "error");
-      return;
-    }
+      if (!name || !email || !message) {
+        showFeedback("Please fill in all fields.", "error");
+        return;
+      }
+      if (!isValidEmail(email)) {
+        showFeedback("Please enter a valid email address.", "error");
+        return;
+      }
 
-    const submitBtn = this.querySelector(".btn-submit");
-    submitBtn.disabled = true;
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+      const submitBtn = this.querySelector(".btn-submit");
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
 
-    const subject = encodeURIComponent(`Message from ${name} - YFC Website`);
-    const body = encodeURIComponent(
-      `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
-    );
-    window.location.href = `mailto:${OFFICIAL_EMAIL}?subject=${subject}&body=${body}`;
+      const subject = encodeURIComponent(`Message from ${name} - YFC Website`);
+      const body = encodeURIComponent(
+        `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
+      );
+      window.location.href = `mailto:${OFFICIAL_EMAIL}?subject=${subject}&body=${body}`;
 
-    showFeedback(
-      `✅ Your email client has been opened. Please send the message to ${OFFICIAL_EMAIL} to complete.`,
-      "success",
-    );
+      showFeedback(
+        `✅ Your email client has been opened. Please send the message to ${OFFICIAL_EMAIL} to complete.`,
+        "success",
+      );
 
-    setTimeout(() => {
-      contactForm.reset();
-      submitBtn.disabled = false;
-      submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
-    }, 2000);
-  });
+      setTimeout(() => {
+        contactForm.reset();
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+      }, 2000);
+    });
+  }
 
   function showFeedback(message, type) {
+    if (!formFeedback) return;
     formFeedback.textContent = message;
     formFeedback.className = "form-feedback " + type;
     formFeedback.style.display = "block";
@@ -547,14 +626,20 @@
     }
   }
 
-  const formInputs = contactForm.querySelectorAll("input, textarea");
+  const formInputs = document.querySelectorAll(
+    "#contactForm input, #contactForm textarea",
+  );
   formInputs.forEach((input) => {
     input.addEventListener("input", function () {
-      formFeedback.style.display = "none";
+      if (formFeedback) formFeedback.style.display = "none";
     });
   });
 
+  // Close modals with Escape
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape") closeModal();
   });
+
+  // Expose member data for load check
+  window.memberData = memberData;
 })();

@@ -17,7 +17,7 @@ body {
 
 .navbar {
   background-color: #f48024;
-  padding: 0.8rem 2rem;
+  padding: 0.8rem 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -25,12 +25,13 @@ body {
   box-shadow: 0 4px 12px rgba(244, 128, 36, 0.3);
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 1000;
 }
 
 .logo {
   display: flex;
   align-items: center;
+  z-index: 1001;
 }
 
 .logo a {
@@ -40,23 +41,55 @@ body {
   gap: 8px;
 }
 
+.menu-toggle {
+  display: none;
+  font-size: 1.8rem;
+  color: white;
+  cursor: pointer;
+  background: none;
+  border: none;
+  z-index: 1001;
+  padding: 0.3rem 0.6rem;
+}
+
+.nav-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 998;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.nav-overlay.active {
+  display: block;
+  opacity: 1;
+}
+
 .nav-links {
   display: flex;
-  gap: 2rem;
+  gap: 1.5rem;
   list-style: none;
   flex-wrap: wrap;
   align-items: center;
+  margin: 0;
+  padding: 0;
 }
 
 .nav-links a {
   color: #ffffff;
   text-decoration: none;
   font-weight: 600;
-  font-size: 1.1rem;
+  font-size: 1rem;
   padding: 0.4rem 0.2rem;
   border-bottom: 2px solid transparent;
   transition: 0.2s ease;
   letter-spacing: 0.3px;
+  white-space: nowrap;
 }
 
 .nav-links a:hover {
@@ -73,9 +106,10 @@ body {
   display: none;
   color: #fff;
   border-bottom: 2px solid #fff;
-  padding: 0.4rem 0.8rem;
+  padding: 0.3rem 0.7rem;
   border-radius: 20px;
   background: rgba(255, 255, 255, 0.1);
+  font-size: 0.9rem;
 }
 
 #profileNavLink:hover {
@@ -83,19 +117,126 @@ body {
   border-bottom-color: #fff;
 }
 
-.menu-toggle {
+.close-menu-item {
   display: none;
-  font-size: 1.8rem;
-  color: white;
-  cursor: pointer;
-  background: none;
-  border: none;
 }
 
+.close-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.6rem 0;
+  width: 100%;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 0.5rem;
+}
+
+/* ----- MOBILE SIDE MENU (sliding from right) ----- */
+@media screen and (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-overlay.active {
+    display: block;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -320px;
+    width: 300px;
+    max-width: 85%;
+    height: 100%;
+    background: #1a1a1a;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 4.5rem 1.5rem 2rem;
+    gap: 0.5rem;
+    transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1000;
+    overflow-y: auto;
+    box-shadow: -6px 0 30px rgba(0, 0, 0, 0.7);
+    border-left: 3px solid #f48024;
+    flex-wrap: nowrap;
+    display: flex !important;
+    pointer-events: none;
+  }
+
+  .nav-links.open {
+    right: 0;
+    pointer-events: auto;
+  }
+
+  .nav-links a {
+    font-size: 1.05rem;
+    padding: 0.7rem 0.4rem;
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    white-space: normal;
+    border-bottom-color: transparent;
+  }
+
+  .nav-links a:hover {
+    border-bottom-color: #f48024;
+    transform: none;
+    border-bottom: 1px solid #f48024;
+  }
+
+  .nav-links .home-link {
+    display: none;
+  }
+
+  #profileNavLink {
+    display: none !important;
+    width: 100%;
+    text-align: center;
+    padding: 0.6rem 0.8rem;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.08);
+    border-bottom: none;
+    font-size: 1rem;
+  }
+
+  #profileNavLink.show-mobile {
+    display: block !important;
+  }
+
+  .close-menu-item {
+    display: block;
+    width: 100%;
+    margin-top: 0.8rem;
+    list-style: none;
+  }
+
+  .close-menu-btn {
+    display: block;
+    background: rgba(244, 128, 36, 0.15);
+    border: 1px solid rgba(244, 128, 36, 0.3);
+    color: #fff;
+    font-size: 0.95rem;
+    cursor: pointer;
+    padding: 0.7rem;
+    width: 100%;
+    text-align: center;
+    border-radius: 30px;
+    transition: 0.3s;
+  }
+
+  .close-menu-btn:hover {
+    background: rgba(244, 128, 36, 0.3);
+  }
+}
+
+/* ----- Pages ----- */
 .page {
   display: none;
   flex: 1;
-  padding: 3rem 2rem 4rem;
+  padding: 1.5rem 0.8rem 2.5rem;
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;
@@ -117,15 +258,16 @@ body {
   }
 }
 
+/* ----- Hero Card ----- */
 .hero-card {
   background: radial-gradient(circle at 10% 20%, #1a1a1a, #000000);
-  border-radius: 24px;
-  padding: 3rem;
-  border-left: 6px solid #f48024;
+  border-radius: 18px;
+  padding: 1.8rem 1.2rem;
+  border-left: 5px solid #f48024;
   transform: translateX(100%);
   opacity: 0;
   animation: slideInRight 0.8s ease forwards;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 @keyframes slideInRight {
@@ -140,49 +282,49 @@ body {
 }
 
 .hero-content h1 {
-  font-size: 3.2rem;
+  font-size: 2rem;
   font-weight: 800;
   color: #f48024;
-  margin-bottom: 1rem;
-  letter-spacing: 1px;
+  margin-bottom: 0.6rem;
+  letter-spacing: 0.5px;
 }
 
 .hero-content h1 i {
-  margin-right: 12px;
+  margin-right: 8px;
 }
 
 .hero-content p {
-  font-size: 1.3rem;
+  font-size: 1rem;
   max-width: 700px;
-  line-height: 1.6;
+  line-height: 1.5;
   color: #dddddd;
 }
 
 .home-feature {
-  margin-top: 2rem;
+  margin-top: 1.2rem;
   display: flex;
   flex-wrap: wrap;
-  gap: 2rem;
+  gap: 0.8rem;
 }
 
 .home-feature div {
   background: rgba(244, 128, 36, 0.08);
-  padding: 1.2rem 1.8rem;
-  border-radius: 40px;
+  padding: 0.6rem 1rem;
+  border-radius: 30px;
   border: 1px solid #f4802440;
-  backdrop-filter: blur(2px);
+  font-size: 0.85rem;
 }
 
 .home-feature i {
   color: #f48024;
-  margin-right: 10px;
+  margin-right: 6px;
 }
 
 .home-cta {
-  margin-top: 2rem;
+  margin-top: 1.2rem;
   background: #0a0a0a;
-  padding: 1.2rem 2rem;
-  border-radius: 60px;
+  padding: 0.8rem 1.5rem;
+  border-radius: 50px;
   display: inline-block;
   border: 1px solid #f4802440;
   color: #ccc;
@@ -200,40 +342,40 @@ body {
   color: #ccc;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
 .home-cta a:hover {
   color: #fff;
 }
 
+/* ----- Environment Slider ----- */
 .env-section {
-  margin: 2rem 0 3rem;
-  position: relative;
+  margin: 1.2rem 0 1.5rem;
 }
 
 .env-title {
-  font-size: 2rem;
+  font-size: 1.4rem;
   color: #fff;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.8rem;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
 }
 
 .env-slider-wrapper {
   position: relative;
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.5rem;
 }
 
 .env-slider {
   display: flex;
-  gap: 1.5rem;
+  gap: 0.8rem;
   overflow-x: auto;
   scroll-behavior: smooth;
-  padding: 0.5rem 0.2rem;
+  padding: 0.2rem 0.1rem;
   scrollbar-width: none;
   -ms-overflow-style: none;
   flex: 1;
@@ -244,11 +386,11 @@ body {
 }
 
 .env-card {
-  min-width: 260px;
-  max-width: 280px;
+  min-width: 190px;
+  max-width: 210px;
   background: #111111;
-  border-radius: 16px;
-  padding: 1.2rem;
+  border-radius: 12px;
+  padding: 0.8rem;
   border: 1px solid #2a2a2a;
   flex-shrink: 0;
   text-align: center;
@@ -257,36 +399,36 @@ body {
 
 .env-card:hover {
   border-color: #f48024;
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(244, 128, 36, 0.12);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(244, 128, 36, 0.1);
 }
 
 .env-card img {
   width: 100%;
-  height: 150px;
+  height: 110px;
   object-fit: cover;
-  border-radius: 8px;
-  margin-bottom: 0.8rem;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
 }
 
 .env-card h3 {
-  font-size: 1.1rem;
-  margin: 0.5rem 0 0.3rem;
+  font-size: 0.9rem;
+  margin: 0.3rem 0 0.1rem;
   color: #fff;
 }
 
 .env-card p {
   color: #b0b0b0;
-  font-size: 0.85rem;
-  line-height: 1.5;
+  font-size: 0.75rem;
+  line-height: 1.3;
 }
 
 .slider-btn {
   background: #1a1a1a;
   border: 1px solid #333;
   color: #fff;
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   cursor: pointer;
   display: flex;
@@ -294,6 +436,7 @@ body {
   justify-content: center;
   transition: 0.3s;
   flex-shrink: 0;
+  font-size: 0.8rem;
 }
 
 .slider-btn:hover {
@@ -304,13 +447,13 @@ body {
 .slider-dots {
   display: flex;
   justify-content: center;
-  gap: 0.6rem;
-  margin-top: 1rem;
+  gap: 0.4rem;
+  margin-top: 0.6rem;
 }
 
 .slider-dots .dot {
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background: #333;
   border: none;
@@ -320,94 +463,109 @@ body {
 
 .slider-dots .dot.active {
   background: #f48024;
-  width: 24px;
-  border-radius: 5px;
+  width: 18px;
+  border-radius: 4px;
 }
 
+/* ----- Page Titles ----- */
 .page-title {
-  font-size: 2.8rem;
+  font-size: 1.8rem;
   font-weight: 700;
   color: #f48024;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.2rem;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
 }
 
 .page-title i {
-  font-size: 2.4rem;
+  font-size: 1.5rem;
 }
 
 .page-sub {
   color: #bbbbbb;
-  font-size: 1.1rem;
-  margin-bottom: 2.5rem;
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
   border-left: 4px solid #f48024;
-  padding-left: 1rem;
+  padding-left: 0.7rem;
 }
 
+/* ----- Card Grid ----- */
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 2rem;
-  margin-top: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-top: 0.3rem;
 }
 
 .card {
   background: #111111;
-  border-radius: 16px;
-  padding: 1.8rem 1.5rem;
+  border-radius: 12px;
+  padding: 1.2rem 0.8rem;
   border: 1px solid #2a2a2a;
   transition: 0.25s;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
   text-align: center;
   cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 280px;
+  min-height: 180px;
   justify-content: center;
 }
 
 .card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-4px);
   border-color: #f48024;
-  box-shadow: 0 12px 28px rgba(244, 128, 36, 0.2);
+  box-shadow: 0 8px 24px rgba(244, 128, 36, 0.12);
   background: #181818;
 }
 
+.card i {
+  font-size: 1.8rem;
+  color: #f48024;
+  margin-bottom: 0.4rem;
+}
+
+.card h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+  color: #ffffff;
+}
+
+.card p {
+  color: #b0b0b0;
+  line-height: 1.4;
+  font-size: 0.8rem;
+  max-width: 95%;
+}
+
 .equip-card {
-  min-height: 320px;
+  min-height: 210px;
   cursor: pointer;
 }
 
 .equip-card img {
   width: 100%;
-  height: 180px;
+  height: 130px;
   object-fit: cover;
-  border-radius: 12px;
-  margin-bottom: 0.8rem;
+  border-radius: 8px;
+  margin-bottom: 0.4rem;
 }
 
-.equip-card:hover {
-  transform: translateY(-6px);
-  border-color: #f48024;
-  box-shadow: 0 12px 28px rgba(244, 128, 36, 0.2);
-  background: #181818;
-}
-
-/* ----- TRAINER ROW (5 cards in one line) ----- */
+/* ----- Trainer Row ----- */
 .trainer-row {
   display: flex;
-  gap: 1.5rem;
+  gap: 0.8rem;
   overflow-x: auto;
-  padding: 0.5rem 0.2rem 1rem;
+  padding: 0.2rem 0.1rem 0.8rem;
   scrollbar-width: thin;
   scrollbar-color: #f48024 #1a1a1a;
 }
 
 .trainer-row::-webkit-scrollbar {
-  height: 6px;
+  height: 4px;
 }
 
 .trainer-row::-webkit-scrollbar-track {
@@ -421,14 +579,14 @@ body {
 }
 
 .trainer-card {
-  flex: 0 0 200px;
-  min-width: 190px;
+  flex: 0 0 150px;
+  min-width: 140px;
   background: #111111;
-  border-radius: 16px;
-  padding: 1.5rem 1.2rem;
+  border-radius: 12px;
+  padding: 1rem 0.6rem;
   border: 1px solid #2a2a2a;
   transition: 0.25s;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
   text-align: center;
   cursor: pointer;
   display: flex;
@@ -438,17 +596,17 @@ body {
 }
 
 .trainer-card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-4px);
   border-color: #f48024;
-  box-shadow: 0 12px 28px rgba(244, 128, 36, 0.2);
+  box-shadow: 0 8px 24px rgba(244, 128, 36, 0.12);
   background: #181818;
 }
 
 .trainer-card .trainer-avatar {
-  width: 80px;
-  height: 80px;
+  width: 65px;
+  height: 65px;
   border-radius: 50%;
-  margin: 0 auto 0.6rem auto;
+  margin: 0 auto 0.4rem auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -464,66 +622,67 @@ body {
 }
 
 .trainer-card h3 {
-  font-size: 1.2rem;
+  font-size: 0.95rem;
   font-weight: 600;
-  margin-bottom: 0.1rem;
+  margin-bottom: 0.05rem;
   color: #ffffff;
+  line-height: 1.2;
 }
 
 .trainer-card .trainer-title {
   color: #f48024;
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   font-weight: 500;
-  letter-spacing: 0.3px;
-  margin-bottom: 0.3rem;
+  letter-spacing: 0.2px;
+  margin-bottom: 0.2rem;
 }
 
 .trainer-card p {
   color: #b0b0b0;
-  line-height: 1.4;
-  font-size: 0.8rem;
-  max-width: 100%;
+  line-height: 1.2;
+  font-size: 0.7rem;
 }
 
 .trainer-card .click-hint {
-  margin-top: 0.4rem;
-  font-size: 0.65rem;
+  margin-top: 0.3rem;
+  font-size: 0.55rem;
   color: #666;
   letter-spacing: 0.3px;
   border-top: 1px solid #2a2a2a;
-  padding-top: 0.4rem;
+  padding-top: 0.3rem;
   width: 100%;
 }
 
 .trainer-card .click-hint i {
   color: #f48024;
-  margin-right: 4px;
+  margin-right: 3px;
 }
 
 .trainer-highlight {
   background: #0e0e0e;
-  border-left: 6px solid #f48024;
-  padding: 1.8rem 2rem;
-  border-radius: 20px;
-  margin-top: 2rem;
+  border-left: 5px solid #f48024;
+  padding: 1rem 1.2rem;
+  border-radius: 14px;
+  margin-top: 1.2rem;
 }
 
 .trainer-highlight strong {
   color: #f48024;
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
+/* ----- Membership ----- */
 .membership-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-  margin: 2rem 0;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.2rem;
+  margin: 1.2rem 0;
 }
 
 .membership-card {
   background: #111111;
-  border-radius: 20px;
-  padding: 2rem 1.8rem;
+  border-radius: 16px;
+  padding: 1.2rem 1rem;
   border: 1px solid #2a2a2a;
   text-align: center;
   transition: 0.3s;
@@ -531,9 +690,9 @@ body {
 }
 
 .membership-card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-5px);
   border-color: #f48024;
-  box-shadow: 0 12px 28px rgba(244, 128, 36, 0.15);
+  box-shadow: 0 8px 24px rgba(244, 128, 36, 0.1);
 }
 
 .membership-card.featured {
@@ -543,33 +702,33 @@ body {
 
 .membership-card .badge {
   position: absolute;
-  top: -12px;
-  right: 20px;
+  top: -10px;
+  right: 12px;
   background: #f48024;
   color: #fff;
-  padding: 0.3rem 1rem;
+  padding: 0.15rem 0.7rem;
   border-radius: 20px;
-  font-size: 0.8rem;
+  font-size: 0.65rem;
   font-weight: 600;
 }
 
 .membership-card h3 {
-  font-size: 1.6rem;
+  font-size: 1.2rem;
   color: #fff;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.2rem;
 }
 
 .membership-card .price {
-  font-size: 2.2rem;
+  font-size: 1.6rem;
   font-weight: 700;
   color: #f48024;
-  margin: 0.5rem 0 1rem;
+  margin: 0.2rem 0 0.6rem;
 }
 
 .membership-card p {
   color: #aaa;
-  font-size: 0.95rem;
-  margin-bottom: 1rem;
+  font-size: 0.8rem;
+  margin-bottom: 0.6rem;
 }
 
 .membership-card ul {
@@ -579,9 +738,9 @@ body {
 }
 
 .membership-card ul li {
-  padding: 0.5rem 0;
+  padding: 0.25rem 0;
   color: #ccc;
-  font-size: 0.9rem;
+  font-size: 0.75rem;
   border-bottom: 1px solid #1f1f1f;
 }
 
@@ -591,17 +750,17 @@ body {
 
 .membership-card ul li i {
   color: #f48024;
-  margin-right: 10px;
+  margin-right: 6px;
 }
 
 .join-btn {
-  margin-top: 1.2rem;
+  margin-top: 0.8rem;
   background: #f48024;
   color: #fff;
   border: none;
-  padding: 0.7rem 2rem;
+  padding: 0.5rem 1.2rem;
   border-radius: 30px;
-  font-size: 1rem;
+  font-size: 0.85rem;
   font-weight: 600;
   cursor: pointer;
   transition: 0.3s;
@@ -611,50 +770,47 @@ body {
 .join-btn:hover {
   background: #e07010;
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(244, 128, 36, 0.3);
+  box-shadow: 0 4px 16px rgba(244, 128, 36, 0.25);
 }
 
 .payment-section {
   background: #0e0e0e;
-  border-radius: 20px;
-  padding: 2rem;
-  margin-top: 2rem;
+  border-radius: 14px;
+  padding: 1.2rem;
+  margin-top: 1.2rem;
   border: 1px solid #1f1f1f;
 }
 
 .payment-section h3 {
   color: #f48024;
-  font-size: 1.4rem;
-  margin-bottom: 1rem;
-}
-
-.payment-section h3 i {
-  margin-right: 8px;
+  font-size: 1.1rem;
+  margin-bottom: 0.6rem;
 }
 
 .payment-icons {
   display: flex;
-  gap: 1.5rem;
+  gap: 0.8rem;
   flex-wrap: wrap;
 }
 
 .payment-badge {
   background: #1a1a1a;
-  padding: 0.8rem 1.5rem;
+  padding: 0.5rem 1rem;
   border-radius: 30px;
   border: 1px solid #333;
   color: #fff;
   font-weight: 500;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 5px;
+  font-size: 0.8rem;
 }
 
 .payment-badge i {
   color: #f48024;
-  font-size: 1.1rem;
 }
 
+/* ----- Profile ----- */
 #profileContent {
   max-width: 700px;
   margin: 0 auto;
@@ -664,29 +820,30 @@ body {
   background: transparent;
   color: #e74c3c;
   border: 2px solid #e74c3c;
-  padding: 0.8rem 2.5rem;
+  padding: 0.5rem 1.8rem;
   border-radius: 30px;
-  font-size: 1rem;
+  font-size: 0.85rem;
   font-weight: 600;
   cursor: pointer;
   transition: 0.3s;
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 6px;
 }
 
 .logout-btn:hover {
   background: #e74c3c;
   color: #fff;
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(231, 76, 60, 0.3);
+  box-shadow: 0 4px 16px rgba(231, 76, 60, 0.25);
 }
 
+/* ----- Footer ----- */
 .main-footer {
   background: #0a0a0a;
   border-top: 1px solid #333;
-  margin-top: 2rem;
-  padding: 3rem 2rem 1rem;
+  margin-top: 1.5rem;
+  padding: 1.8rem 1rem 0.8rem;
 }
 
 .footer-container {
@@ -694,41 +851,41 @@ body {
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 4rem;
+  gap: 2rem;
   align-items: start;
 }
 
 .footer-contact h3 {
   color: #f48024;
-  font-size: 1.5rem;
-  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+  margin-bottom: 0.8rem;
 }
 
 .contact-item {
   display: flex;
   align-items: flex-start;
-  gap: 1rem;
-  margin-bottom: 1rem;
+  gap: 0.6rem;
+  margin-bottom: 0.5rem;
   color: #cccccc;
-  font-size: 0.95rem;
+  font-size: 0.8rem;
 }
 
 .contact-item i {
   color: #f48024;
-  font-size: 1.2rem;
-  width: 1.5rem;
-  margin-top: 0.1rem;
+  font-size: 0.9rem;
+  width: 1.1rem;
+  margin-top: 0.05rem;
 }
 
 .footer-social {
   display: flex;
-  gap: 1.5rem;
-  margin-top: 1.5rem;
+  gap: 0.8rem;
+  margin-top: 0.8rem;
 }
 
 .footer-social a {
   color: #aaaaaa;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   transition: 0.3s;
 }
 
@@ -739,24 +896,24 @@ body {
 
 .footer-form h3 {
   color: #f48024;
-  font-size: 1.5rem;
-  margin-bottom: 1.2rem;
+  font-size: 1.1rem;
+  margin-bottom: 0.8rem;
 }
 
 .form-group {
-  margin-bottom: 1rem;
+  margin-bottom: 0.6rem;
 }
 
 .form-group input,
 .form-group textarea,
 .form-group select {
   width: 100%;
-  padding: 0.8rem 1rem;
+  padding: 0.5rem 0.7rem;
   background: #1a1a1a;
   border: 1px solid #333;
   border-radius: 8px;
   color: #ffffff;
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   transition: 0.3s;
   outline: none;
 }
@@ -765,33 +922,33 @@ body {
 .form-group textarea:focus,
 .form-group select:focus {
   border-color: #f48024;
-  box-shadow: 0 0 0 3px rgba(244, 128, 36, 0.15);
+  box-shadow: 0 0 0 3px rgba(244, 128, 36, 0.12);
 }
 
 .form-group textarea {
   resize: vertical;
-  min-height: 100px;
+  min-height: 70px;
 }
 
 .btn-submit {
   background: #f48024;
   color: #ffffff;
   border: none;
-  padding: 0.9rem 2rem;
-  font-size: 1rem;
+  padding: 0.6rem 1.5rem;
+  font-size: 0.85rem;
   font-weight: 600;
   border-radius: 30px;
   cursor: pointer;
   transition: 0.3s;
   display: inline-flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: 0.4rem;
 }
 
 .btn-submit:hover {
   background: #e07010;
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(244, 128, 36, 0.3);
+  box-shadow: 0 4px 16px rgba(244, 128, 36, 0.2);
 }
 
 .btn-submit:disabled {
@@ -801,37 +958,38 @@ body {
 }
 
 .form-feedback {
-  margin-top: 1rem;
-  padding: 0.8rem 1rem;
+  margin-top: 0.6rem;
+  padding: 0.5rem 0.8rem;
   border-radius: 8px;
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   display: none;
 }
 
 .form-feedback.success {
   display: block;
-  background: rgba(46, 204, 113, 0.15);
+  background: rgba(46, 204, 113, 0.12);
   border: 1px solid #2ecc71;
   color: #2ecc71;
 }
 
 .form-feedback.error {
   display: block;
-  background: rgba(231, 76, 60, 0.15);
+  background: rgba(231, 76, 60, 0.12);
   border: 1px solid #e74c3c;
   color: #e74c3c;
 }
 
 .footer-bottom {
   max-width: 1200px;
-  margin: 2rem auto 0;
-  padding-top: 1.5rem;
+  margin: 1.2rem auto 0;
+  padding-top: 0.8rem;
   border-top: 1px solid #333;
   text-align: center;
   color: #555;
-  font-size: 0.85rem;
+  font-size: 0.75rem;
 }
 
+/* ----- Modals ----- */
 .modal-overlay {
   display: none;
   position: fixed;
@@ -841,7 +999,7 @@ body {
   height: 100%;
   background: rgba(0, 0, 0, 0.85);
   backdrop-filter: blur(6px);
-  z-index: 999;
+  z-index: 2000;
   justify-content: center;
   align-items: center;
   animation: fadeIn 0.2s ease;
@@ -854,10 +1012,10 @@ body {
 .modal-box {
   background: #1a1a1a;
   border: 2px solid #f48024;
-  border-radius: 28px;
-  padding: 2.5rem 2.8rem;
-  max-width: 520px;
-  width: 90%;
+  border-radius: 20px;
+  padding: 1.8rem 1.5rem;
+  max-width: 450px;
+  width: 92%;
   text-align: center;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
   position: relative;
@@ -866,9 +1024,9 @@ body {
 }
 
 .modal-box .trainer-avatar {
-  width: 100px;
-  height: 100px;
-  margin: 0 auto 0.8rem;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 0.5rem;
   border-radius: 50%;
   overflow: hidden;
   border: 3px solid #f48024;
@@ -882,31 +1040,31 @@ body {
 
 .modal-box h2 {
   color: #fff;
-  font-size: 2rem;
-  margin-bottom: 0.2rem;
+  font-size: 1.4rem;
+  margin-bottom: 0.05rem;
 }
 
 .modal-box .modal-title {
   color: #f48024;
   font-weight: 500;
-  font-size: 1rem;
-  margin-bottom: 0.8rem;
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
 }
 
 .modal-box p {
   color: #ccc;
-  line-height: 1.6;
-  font-size: 1rem;
+  line-height: 1.5;
+  font-size: 0.9rem;
 }
 
 .modal-close {
   position: absolute;
-  top: 16px;
-  right: 20px;
+  top: 10px;
+  right: 14px;
   background: none;
   border: none;
   color: #aaa;
-  font-size: 1.8rem;
+  font-size: 1.3rem;
   cursor: pointer;
   transition: 0.2s;
 }
@@ -930,18 +1088,18 @@ body {
 }
 
 .equip-detail ul li {
-  padding: 0.6rem 0;
+  padding: 0.4rem 0;
   border-bottom: 1px solid #2a2a2a;
   color: #ccc;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
+  font-size: 0.85rem;
 }
 
 .equip-detail ul li i {
   color: #f48024;
-  width: 24px;
-  font-size: 1rem;
+  width: 20px;
 }
 
 .equip-detail ul li:last-child {
@@ -956,122 +1114,257 @@ body {
   text-align: center;
 }
 
+/* ----- Responsive ----- */
 @media screen and (max-width: 768px) {
   .navbar {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.8rem;
-    padding: 1rem 1.2rem;
+    padding: 0.5rem 0.8rem;
   }
-  .nav-links {
-    justify-content: center;
-    gap: 1.2rem;
-  }
-  .logo {
-    justify-content: center;
-  }
-  .hero-content h1 {
-    font-size: 2.4rem;
-  }
-  .page-title {
-    font-size: 2rem;
-  }
-  .menu-toggle {
-    display: block;
-    align-self: flex-end;
-  }
-  .footer-container {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-  }
-  .modal-box {
-    padding: 2rem 1.5rem;
-  }
-  .env-card {
-    min-width: 220px;
-  }
-  .slider-btn {
-    width: 32px;
-    height: 32px;
-    font-size: 0.8rem;
-  }
-  #profileContent > div {
-    grid-template-columns: 1fr 1fr !important;
-  }
-  .trainer-card {
-    flex: 0 0 170px;
-    min-width: 160px;
-    padding: 1.2rem 0.8rem;
-  }
-  .trainer-card .trainer-avatar {
-    width: 65px;
-    height: 65px;
-  }
-  .trainer-card h3 {
-    font-size: 1rem;
-  }
-  .trainer-card p {
-    font-size: 0.7rem;
-  }
-}
 
-@media screen and (max-width: 480px) {
-  .nav-links {
-    gap: 0.8rem;
-  }
-  .nav-links a {
-    font-size: 0.85rem;
-  }
   .page {
-    padding: 1.5rem 1rem;
+    padding: 1rem 0.6rem 1.8rem;
   }
+
   .hero-card {
-    padding: 1.8rem;
+    padding: 1.2rem 0.8rem;
+    border-left-width: 4px;
   }
+
+  .hero-content h1 {
+    font-size: 1.6rem;
+  }
+
+  .hero-content p {
+    font-size: 0.9rem;
+  }
+
+  .home-feature div {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.75rem;
+  }
+
+  .page-title {
+    font-size: 1.5rem;
+  }
+
+  .page-title i {
+    font-size: 1.2rem;
+  }
+
+  .page-sub {
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+  }
+
   .card-grid {
     grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
   }
-  .membership-grid {
-    grid-template-columns: 1fr;
+
+  .card {
+    min-height: 150px;
+    padding: 0.8rem 0.5rem;
   }
-  .home-feature {
-    gap: 1rem;
+
+  .card i {
+    font-size: 1.4rem;
   }
-  .home-feature div {
-    padding: 0.8rem 1.2rem;
-    font-size: 0.85rem;
+
+  .card h3 {
+    font-size: 0.9rem;
   }
-  #profileContent > div {
-    grid-template-columns: 1fr !important;
+
+  .card p {
+    font-size: 0.7rem;
   }
-  #profileContent > div > div:last-child {
-    grid-column: span 1 !important;
+
+  .equip-card {
+    min-height: 170px;
   }
+
+  .equip-card img {
+    height: 100px;
+  }
+
+  .env-card {
+    min-width: 160px;
+    padding: 0.6rem;
+  }
+
+  .env-card img {
+    height: 90px;
+  }
+
+  .env-card h3 {
+    font-size: 0.8rem;
+  }
+
+  .env-card p {
+    font-size: 0.65rem;
+  }
+
+  .slider-btn {
+    width: 28px;
+    height: 28px;
+    font-size: 0.7rem;
+  }
+
   .trainer-card {
-    flex: 0 0 150px;
-    min-width: 140px;
-    padding: 1rem 0.6rem;
+    flex: 0 0 130px;
+    min-width: 120px;
+    padding: 0.6rem 0.4rem;
   }
+
   .trainer-card .trainer-avatar {
     width: 55px;
     height: 55px;
   }
+
   .trainer-card h3 {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
   }
-  .trainer-card .trainer-title {
-    font-size: 0.65rem;
-  }
+
   .trainer-card p {
-    font-size: 0.65rem;
+    font-size: 0.6rem;
   }
-  .trainer-card .click-hint {
-    font-size: 0.55rem;
+
+  .membership-grid {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+
+  .membership-card {
+    padding: 1rem 0.8rem;
+  }
+
+  .membership-card .price {
+    font-size: 1.4rem;
+  }
+
+  .footer-container {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+
+  .modal-box {
+    padding: 1.2rem 1rem;
+    max-width: 96%;
+  }
+
+  .modal-box h2 {
+    font-size: 1.2rem;
+  }
+
+  .modal-box p {
+    font-size: 0.85rem;
+  }
+
+  #profileContent {
+    padding: 1rem 0.8rem !important;
+  }
+
+  #profileContent > div {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.6rem !important;
+  }
+
+  #profileContent > div > div {
+    padding: 0.8rem !important;
+  }
+
+  #profileContent > div > div i {
+    font-size: 1.5rem !important;
+  }
+
+  #profileContent > div > div p {
+    font-size: 0.7rem !important;
+  }
+
+  #profileContent > div > div p:last-child {
+    font-size: 0.85rem !important;
   }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 450px) {
   .card-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+
+  .card {
+    min-height: 130px;
+    padding: 0.6rem 0.4rem;
+  }
+
+  .card i {
+    font-size: 1.2rem;
+  }
+
+  .card h3 {
+    font-size: 0.8rem;
+  }
+
+  .card p {
+    font-size: 0.6rem;
+  }
+
+  .equip-card {
+    min-height: 150px;
+  }
+
+  .equip-card img {
+    height: 80px;
+  }
+
+  .env-card {
+    min-width: 140px;
+  }
+
+  .trainer-card {
+    flex: 0 0 110px;
+    min-width: 100px;
+    padding: 0.5rem 0.3rem;
+  }
+
+  .trainer-card .trainer-avatar {
+    width: 45px;
+    height: 45px;
+  }
+
+  .trainer-card h3 {
+    font-size: 0.7rem;
+  }
+
+  .trainer-card .trainer-title {
+    font-size: 0.55rem;
+  }
+
+  .trainer-card p {
+    font-size: 0.55rem;
+  }
+
+  .trainer-card .click-hint {
+    font-size: 0.5rem;
+  }
+
+  .hero-content h1 {
+    font-size: 1.3rem;
+  }
+
+  .page-title {
+    font-size: 1.2rem;
+  }
+
+  .nav-links {
+    width: 280px;
+    max-width: 85%;
+    right: -290px;
+  }
+
+  #profileContent > div {
+    grid-template-columns: 1fr !important;
+  }
+
+  #profileContent > div > div:last-child {
+    grid-column: span 1 !important;
   }
 }
