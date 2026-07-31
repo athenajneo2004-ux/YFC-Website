@@ -15,18 +15,23 @@ body {
   overflow-x: hidden;
 }
 
+/* ----- NAVBAR WITH 3D SHADOW EFFECT ----- */
 .navbar {
-  background-color: #f48024;
+  background: linear-gradient(145deg, #f48024, #d9701e);
   padding: 0.8rem 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  box-shadow: 0 4px 12px rgba(244, 128, 36, 0.3);
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.5),
+    0 8px 24px rgba(244, 128, 36, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
   position: sticky;
   top: 0;
   z-index: 1000;
   min-height: 60px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
 }
 
 .logo {
@@ -54,6 +59,12 @@ body {
   padding: 0.3rem 0.6rem;
   flex-shrink: 0;
   margin-left: auto;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.menu-toggle:hover {
+  transform: scale(1.05);
+  color: #fff;
 }
 
 .nav-overlay {
@@ -94,12 +105,13 @@ body {
   transition: 0.2s ease;
   letter-spacing: 0.3px;
   white-space: nowrap;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 }
 
 .nav-links a:hover {
   border-bottom-color: #ffffff;
   transform: translateY(-2px);
-  text-shadow: 0 2px 6px rgba(255, 255, 255, 0.4);
+  text-shadow: 0 2px 8px rgba(255, 255, 255, 0.4);
 }
 
 .nav-links .home-link {
@@ -137,6 +149,12 @@ body {
   text-align: center;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   margin-top: 0.5rem;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.close-menu-btn:hover {
+  background: rgba(244, 128, 36, 0.2);
+  border-radius: 8px;
 }
 
 /* ----- Page Divider ----- */
@@ -148,7 +166,7 @@ body {
   opacity: 0.6;
 }
 
-/* ----- MOBILE SIDE MENU (sliding from right) ----- */
+/* ----- MOBILE SIDE MENU ----- */
 @media screen and (max-width: 768px) {
   .menu-toggle {
     display: block;
@@ -165,7 +183,7 @@ body {
     width: 260px;
     max-width: 75%;
     height: 100%;
-    background: #1a1a1a;
+    background: linear-gradient(160deg, #1a1a1a, #0d0d0d);
     flex-direction: column;
     align-items: flex-start;
     padding: 4.5rem 1.5rem 2rem;
@@ -173,7 +191,9 @@ body {
     transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 1000;
     overflow-y: auto;
-    box-shadow: -6px 0 30px rgba(0, 0, 0, 0.7);
+    box-shadow:
+      -8px 0 30px rgba(0, 0, 0, 0.8),
+      -4px 0 20px rgba(244, 128, 36, 0.15);
     border-left: 3px solid #f48024;
     flex-wrap: nowrap;
     display: flex !important;
@@ -501,13 +521,10 @@ body {
   color: #bbbbbb;
   font-size: 0.95rem;
   margin-bottom: 1.5rem;
-  border-left: 4px solid #f48024;
-  padding-left: 0.7rem;
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
-  border-left: none;
   border-bottom: 2px solid #f48024;
   padding-bottom: 0.5rem;
 }
