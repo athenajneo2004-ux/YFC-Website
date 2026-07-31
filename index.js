@@ -336,7 +336,7 @@
       ],
     },
     cardio: {
-      title: "❤️ Cardio Zone Equipment",
+      title: "🏃‍♂️ Cardio Zone Equipment",
       items: [
         { name: "Woodway Treadmills", icon: "fa-running" },
         { name: "Assault Air Bikes", icon: "fa-bicycle" },
@@ -589,8 +589,7 @@
       window.location.href = `mailto:${OFFICIAL_EMAIL}?subject=${subject}&body=${body}`;
 
       showFeedback(
-        `✅ Your email client has been opened. Please send the message to ${OFFICIAL_EMAIL} to complete.`,
-        "success",
+        ` Your email arrived at ${OFFICIAL_EMAIL}`,
       );
 
       setTimeout(() => {
