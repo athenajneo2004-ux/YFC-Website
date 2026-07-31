@@ -19,7 +19,6 @@
     closeMobileMenu();
   }
 
-  // Mobile menu functions
   function openMobileMenu() {
     navUl.classList.add("open");
     navOverlay.classList.add("active");
@@ -40,7 +39,6 @@
     }
   }
 
-  // Menu toggle
   if (menuToggle) {
     menuToggle.addEventListener("click", function (e) {
       e.stopPropagation();
@@ -48,17 +46,14 @@
     });
   }
 
-  // Close menu button
   if (closeMenuBtn) {
     closeMenuBtn.addEventListener("click", closeMobileMenu);
   }
 
-  // Overlay click to close
   if (navOverlay) {
     navOverlay.addEventListener("click", closeMobileMenu);
   }
 
-  // Close menu when clicking a link
   navLinks.forEach((link) => {
     link.addEventListener("click", function (e) {
       if (window.innerWidth <= 768) {
@@ -67,7 +62,6 @@
     });
   });
 
-  // Navigation clicks
   navLinks.forEach((link) => {
     link.addEventListener("click", function (e) {
       const pageId = this.getAttribute("data-page");
@@ -85,14 +79,12 @@
     });
   }
 
-  // Hash change
   window.addEventListener("hashchange", function () {
     const hash = window.location.hash.replace("#", "");
     if (hash && document.getElementById(hash)) showPage(hash);
     else showPage("home");
   });
 
-  // Load
   window.addEventListener("load", function () {
     const hash = window.location.hash.replace("#", "");
     if (hash && document.getElementById(hash)) showPage(hash);
@@ -105,14 +97,12 @@
     }
   });
 
-  // Resize - close mobile menu on desktop
   window.addEventListener("resize", function () {
     if (window.innerWidth > 768) {
       closeMobileMenu();
     }
   });
 
-  // Logo click
   const logoLink = document.getElementById("logoLink");
   if (logoLink) {
     logoLink.addEventListener("click", function (e) {
@@ -121,7 +111,6 @@
     });
   }
 
-  // Start Program button
   const startBtn = document.getElementById("startProgramBtn");
   if (startBtn) {
     startBtn.addEventListener("click", function (e) {
