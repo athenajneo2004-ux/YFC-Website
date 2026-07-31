@@ -596,6 +596,22 @@ body {
   margin-bottom: 0.4rem;
 }
 
+/* ----- Mobile: third card centered ----- */
+@media screen and (max-width: 768px) {
+  .card-grid-center {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+    max-width: 100%;
+  }
+
+  .card-center-mobile {
+    grid-column: 1 / -1;
+    max-width: 320px;
+    margin: 0 auto;
+    width: 100%;
+  }
+}
+
 /* ----- Trainer Row ----- */
 .trainer-row {
   display: flex;
@@ -1233,6 +1249,13 @@ body {
     grid-template-columns: 1fr 1fr;
     gap: 0.6rem;
     max-width: 100%;
+  }
+
+  .card-center-mobile {
+    grid-column: 1 / -1;
+    max-width: 320px;
+    margin: 0 auto;
+    width: 100%;
   }
 
   .card {
