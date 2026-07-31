@@ -100,7 +100,6 @@
       showPage("home");
       if (window.location.hash) history.pushState(null, "", "#");
     }
-    // Check if profile should be visible
     if (memberData) {
       showProfileNav();
     }
@@ -457,7 +456,6 @@
         day: "numeric",
       });
     showProfileNav();
-    // Update coach select options to match selected
   }
 
   function clearProfile() {
@@ -635,11 +633,9 @@
     });
   });
 
-  // Close modals with Escape
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape") closeModal();
   });
 
-  // Expose member data for load check
   window.memberData = memberData;
 })();
