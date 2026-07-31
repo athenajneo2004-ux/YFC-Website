@@ -1,0 +1,876 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YFC · Yangon Fitness Club</title>
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- ========== NAVIGATION ========== -->
+    <nav class="navbar">
+      <div class="logo" id="logoHome">
+        <a
+          href="#"
+          id="logoLink"
+          style="
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            gap: 8px;
+          "
+        >
+          <i
+            class="fas fa-dumbbell"
+            style="color: #ffffff; font-size: 1.8rem"
+          ></i>
+          <span
+            style="
+              font-size: 1.8rem;
+              font-weight: 700;
+              color: #ffffff;
+              text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            "
+            >YFC</span
+          >
+        </a>
+      </div>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#" class="home-link" data-page="home">Home</a></li>
+        <li><a href="#" data-page="about">About Us</a></li>
+        <li><a href="#" data-page="environment">Environment</a></li>
+        <li><a href="#" data-page="equipment">Equipment</a></li>
+        <li><a href="#" data-page="trainer">Trainer</a></li>
+        <li><a href="#" data-page="membership">Membership</a></li>
+        <li>
+          <a
+            href="#"
+            id="profileNavLink"
+            data-page="profile"
+            style="
+              display: none;
+              color: #fff;
+              border-bottom: 2px solid #fff;
+              padding: 0.4rem 0.8rem;
+              border-radius: 20px;
+              background: rgba(255, 255, 255, 0.1);
+            "
+          >
+            <i class="fas fa-user-circle"></i> My Account
+          </a>
+        </li>
+      </ul>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </nav>
+
+    <!-- ========== HOME ========== -->
+    <section id="home" class="page active">
+      <div class="hero-card" id="heroCard">
+        <div class="hero-content">
+          <h1><i class="fas fa-home"></i> YFC · Yangon Fitness Club</h1>
+          <p>
+            Welcome to your new home of strength, community, and
+            transformation.<br />
+            <span style="color: #f48024">#TrainLikeAChampion</span>
+          </p>
+          <div class="home-feature">
+            <div><i class="fas fa-clock"></i> Open 5:00 – 23:00</div>
+            <div><i class="fas fa-map-pin"></i> Yangon, Myanmar</div>
+            <div><i class="fas fa-users"></i> 200+ active members</div>
+          </div>
+          <div class="home-cta">
+            <a
+              href="#"
+              id="startProgramBtn"
+              style="
+                text-decoration: none;
+                color: #ccc;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+              "
+            >
+              <i class="fas fa-arrow-right" style="color: #f48024"></i>
+              <span>Start Your Program</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="env-section">
+        <h2 class="env-title">
+          <i class="fas fa-leaf" style="color: #f48024"></i> Our Environment
+        </h2>
+        <div class="env-slider-wrapper">
+          <button class="slider-btn prev-btn" id="prevEnv">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <div class="env-slider" id="envSlider">
+            <div class="env-card">
+              <img
+                src="images/11.jpg"
+                alt="Gym interior"
+                style="
+                  width: 100%;
+                  height: 150px;
+                  object-fit: cover;
+                  border-radius: 8px;
+                  margin-bottom: 1rem;
+                "
+              />
+              <h3>Modern Facility</h3>
+              <p>Spacious, well-lit gym with premium equipment.</p>
+            </div>
+            <div class="env-card">
+              <img
+                src="images/12.jpg"
+                alt="Clean environment"
+                style="
+                  width: 100%;
+                  height: 150px;
+                  object-fit: cover;
+                  border-radius: 8px;
+                  margin-bottom: 1rem;
+                "
+              />
+              <h3>Clean & Hygienic</h3>
+              <p>Daily deep cleaning and sanitization protocols.</p>
+            </div>
+            <div class="env-card">
+              <img
+                src="images/13.jpg"
+                alt="Community"
+                style="
+                  width: 100%;
+                  height: 150px;
+                  object-fit: cover;
+                  border-radius: 8px;
+                  margin-bottom: 1rem;
+                "
+              />
+              <h3>Community Vibe</h3>
+              <p>Friendly atmosphere that keeps you motivated.</p>
+            </div>
+            <div class="env-card">
+              <img
+                src="images/14.jpg"
+                alt="Cardio area"
+                style="
+                  width: 100%;
+                  height: 150px;
+                  object-fit: cover;
+                  border-radius: 8px;
+                  margin-bottom: 1rem;
+                "
+              />
+              <h3>Cardio Zone</h3>
+              <p>State-of-the-art treadmills, bikes, and rowers.</p>
+            </div>
+            <div class="env-card">
+              <img
+                src="images/11.jpg"
+                alt="Group class"
+                style="
+                  width: 100%;
+                  height: 150px;
+                  object-fit: cover;
+                  border-radius: 8px;
+                  margin-bottom: 1rem;
+                "
+              />
+              <h3>Group Classes</h3>
+              <p>Yoga, Zumba, and high-intensity interval training.</p>
+            </div>
+          </div>
+          <button class="slider-btn next-btn" id="nextEnv">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+        <div class="slider-dots" id="envDots"></div>
+      </div>
+    </section>
+
+    <!-- ========== ABOUT ========== -->
+    <section id="about" class="page">
+      <div class="page-title"><i class="fas fa-users"></i> About Us</div>
+      <div class="page-sub">
+        Yangon Fitness Club – where passion meets performance.
+      </div>
+      <div class="card-grid">
+        <div class="card" style="cursor: default">
+          <i class="fas fa-bullseye"></i>
+          <h3>Our Mission</h3>
+          <p>
+            Empower every member to reach their peak fitness through expert
+            coaching, top-tier equipment, and a supportive community.
+          </p>
+        </div>
+        <div class="card" style="cursor: default">
+          <i class="fas fa-history"></i>
+          <h3>Since 2018</h3>
+          <p>
+            Born in the heart of Yangon, YFC has grown into a hub for athletes,
+            beginners, and everyone in between.
+          </p>
+        </div>
+        <div class="card" style="cursor: default">
+          <i class="fas fa-handshake"></i>
+          <h3>Community First</h3>
+          <p>
+            We believe fitness is better together. Group classes, events, and a
+            culture that pushes you forward.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== ENVIRONMENT ========== -->
+    <section id="environment" class="page">
+      <div class="page-title"><i class="fas fa-leaf"></i> Environment</div>
+      <div class="page-sub">Clean, motivating, and built for focus.</div>
+      <div class="card-grid">
+        <div
+          class="card"
+          style="cursor: default; min-height: auto; padding: 1.2rem"
+        >
+          <img
+            src="images/1.jpg"
+            alt="Modern gym"
+            style="
+              width: 100%;
+              height: 180px;
+              object-fit: cover;
+              border-radius: 12px;
+              margin-bottom: 1rem;
+            "
+          />
+          <h3>Modern Facility</h3>
+          <p>
+            Spacious, well-lit gym with premium equipment and great atmosphere.
+          </p>
+        </div>
+        <div
+          class="card"
+          style="cursor: default; min-height: auto; padding: 1.2rem"
+        >
+          <img
+            src="images/2.jpg"
+            alt="Clean gym"
+            style="
+              width: 100%;
+              height: 180px;
+              object-fit: cover;
+              border-radius: 12px;
+              margin-bottom: 1rem;
+            "
+          />
+          <h3>Clean & Hygienic</h3>
+          <p>
+            Daily deep cleaning and sanitization to ensure a safe workout
+            environment.
+          </p>
+        </div>
+        <div
+          class="card"
+          style="cursor: default; min-height: auto; padding: 1.2rem"
+        >
+          <img
+            src="images/3.jpg"
+            alt="Community"
+            style="
+              width: 100%;
+              height: 180px;
+              object-fit: cover;
+              border-radius: 12px;
+              margin-bottom: 1rem;
+            "
+          />
+          <h3>Community Vibe</h3>
+          <p>
+            Friendly atmosphere that keeps you motivated and coming back for
+            more.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== EQUIPMENT ========== -->
+    <section id="equipment" class="page">
+      <div class="page-title"><i class="fas fa-dumbbell"></i> Equipment</div>
+      <div class="page-sub">
+        Click any card to learn more about our equipment.
+      </div>
+      <div class="card-grid">
+        <div class="card equip-card" data-equip="weights">
+          <img
+            src="images/15.png"
+            alt="Free weights"
+            style="
+              width: 100%;
+              height: 180px;
+              object-fit: cover;
+              border-radius: 12px;
+              margin-bottom: 1rem;
+            "
+          />
+          <h3>Free Weights</h3>
+          <p>Click to see all our barbells, dumbbells, and racks.</p>
+        </div>
+        <div class="card equip-card" data-equip="cardio">
+          <img
+            src="images/16.png"
+            alt="Cardio equipment"
+            style="
+              width: 100%;
+              height: 180px;
+              object-fit: cover;
+              border-radius: 12px;
+              margin-bottom: 1rem;
+            "
+          />
+          <h3>Cardio Zone</h3>
+          <p>Click to learn what cardio equipment we offer.</p>
+        </div>
+        <div class="card equip-card" data-equip="machines">
+          <img
+            src="images/15.png"
+            alt="Machines"
+            style="
+              width: 100%;
+              height: 180px;
+              object-fit: cover;
+              border-radius: 12px;
+              margin-bottom: 1rem;
+            "
+          />
+          <h3>Machines</h3>
+          <p>Click to discover our selection of fitness machines.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== TRAINER (5 coaches in one row) ========== -->
+    <section id="trainer" class="page">
+      <div class="page-title">
+        <i class="fas fa-chalkboard-teacher"></i> Trainer Page
+      </div>
+      <div class="page-sub">Meet our experts – click any card for details.</div>
+
+      <div class="trainer-row">
+        <div class="trainer-card" data-trainer="min">
+          <div class="trainer-avatar">
+            <img
+              src="images/Screenshot 2026-07-31 102211.png"
+              alt="Main Trainer(Ko Ko Htet Aung)"
+            />
+          </div>
+          <h3>Main Trainer(Ko Ko Htet Aung)</h3>
+          <div class="trainer-title"> Strength &amp; Conditioning</div>
+          <p>10+ years experience. Former collegiate athlete.</p>
+          <div class="click-hint">
+            <i class="fas fa-mouse-pointer"></i> click for bio
+          </div>
+        </div>
+        <div class="trainer-card" data-trainer="thiri">
+          <div class="trainer-avatar">
+            <img
+              src="images/Screenshot 2026-07-31 102219.png"
+              alt="Coach Sit Aung"
+            />
+          </div>
+          <h3>Trainer Sit Aung</h3>
+          <div class="trainer-title">🥗 Nutrition &amp; Mobility</div>
+          <p>Recovery, nutrition, and movement specialist.</p>
+          <div class="click-hint">
+            <i class="fas fa-mouse-pointer"></i> click for bio
+          </div>
+        </div>
+        <div class="trainer-card" data-trainer="zaw">
+          <div class="trainer-avatar">
+            <img
+              src="images/Screenshot 2026-07-31 102235.png"
+              alt="Coach Chit Lin Phyu"
+            />
+          </div>
+          <h3>Trainer Chit Lin Phyu</h3>
+          <div class="trainer-title">🏋️ Olympic &amp; Powerlifting</div>
+          <p>Former national competitor. Explosive strength.</p>
+          <div class="click-hint">
+            <i class="fas fa-mouse-pointer"></i> click for bio
+          </div>
+        </div>
+        <div class="trainer-card" data-trainer="zumba">
+          <div class="trainer-avatar">
+            <img
+              src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=200&h=200&fit=crop&crop=face"
+              alt="Coach Zumba"
+            />
+          </div>
+          <h3>Coach Zumba</h3>
+          <div class="trainer-title">💃 Zumba &amp; Dance Fitness</div>
+          <p>High-energy dance workouts. Fun, rhythmic, and effective.</p>
+          <div class="click-hint">
+            <i class="fas fa-mouse-pointer"></i> click for bio
+          </div>
+        </div>
+        <div class="trainer-card" data-trainer="hnin">
+          <div class="trainer-avatar">
+            <img
+              src="images/Screenshot 2026-07-31 102241.png"
+              alt="Coach Khant"
+            />
+          </div>
+          <h3>Trainer Khant</h3>
+          <div class="trainer-title">Fitness &amp; Mindfulness</div>
+          <p>
+            Certified yoga instructor. Balance, flexibility, and inner peace.
+          </p>
+          <div class="click-hint">
+            <i class="fas fa-mouse-pointer"></i> click for bio
+          </div>
+        </div>
+      </div>
+
+      <div class="trainer-highlight">
+        <i class="fas fa-star" style="color: #f48024; margin-right: 10px"></i>
+        <strong>Personal training available</strong> — book a session with any
+        of our five coaches.
+        <span style="color: #aaa; display: inline-block; margin-top: 8px"
+          >First consultation is free!</span
+        >
+      </div>
+    </section>
+
+    <!-- ========== MEMBERSHIP ========== -->
+    <section id="membership" class="page">
+      <div class="page-title"><i class="fas fa-id-card"></i> Membership</div>
+      <div class="page-sub">
+        Choose your plan and start your fitness journey today.
+      </div>
+
+      <div class="membership-grid">
+        <div class="membership-card" data-plan="monthly">
+          <h3>Monthly</h3>
+          <div class="price">60,000 MMK</div>
+          <p>Perfect for beginners or short-term commitment.</p>
+          <ul>
+            <li><i class="fas fa-check"></i> Full gym access</li>
+            <li><i class="fas fa-check"></i> Group classes</li>
+            <li><i class="fas fa-check"></i> Locker room</li>
+          </ul>
+          <button class="join-btn" data-plan="monthly">Join Now</button>
+        </div>
+        <div class="membership-card featured" data-plan="quarterly">
+          <div class="badge">Best Value</div>
+          <h3>3 Months</h3>
+          <div class="price">150,000 MMK</div>
+          <p>Save 16% compared to monthly!</p>
+          <ul>
+            <li><i class="fas fa-check"></i> Full gym access</li>
+            <li><i class="fas fa-check"></i> Group classes</li>
+            <li><i class="fas fa-check"></i> Locker room</li>
+            <li>
+              <i class="fas fa-check"></i>
+              <strong>Free personal training session</strong>
+            </li>
+          </ul>
+          <button class="join-btn" data-plan="quarterly">Join Now</button>
+        </div>
+      </div>
+
+      <div class="payment-section">
+        <h3><i class="fas fa-credit-card"></i> Payment Methods</h3>
+        <div class="payment-icons">
+          <span class="payment-badge"
+            ><i class="fas fa-mobile-alt"></i> KPay</span
+          >
+          <span class="payment-badge"
+            ><i class="fas fa-university"></i> AYA Pay</span
+          >
+        </div>
+        <p style="color: #aaa; margin-top: 1rem; font-size: 0.95rem">
+          Scan the QR code or pay via mobile banking apps.
+        </p>
+        <div
+          style="
+            background: #1a1a1a;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+            border: 1px solid #333;
+            text-align: center;
+          "
+        >
+          <i class="fas fa-qrcode" style="font-size: 4rem; color: #f48024"></i>
+          <p style="color: #888; margin-top: 0.5rem">
+            QR Code for KPay / AYA Pay
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== PROFILE PAGE ========== -->
+    <section id="profile" class="page">
+      <div class="page-title">
+        <i class="fas fa-user-circle"></i> My Account
+      </div>
+      <div class="page-sub">Your membership details</div>
+      <div
+        id="profileContent"
+        style="
+          background: #111;
+          border-radius: 20px;
+          padding: 2.5rem;
+          border: 1px solid #2a2a2a;
+        "
+      >
+        <div
+          style="
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            max-width: 600px;
+            margin: 0 auto;
+          "
+        >
+          <div
+            style="
+              background: #1a1a1a;
+              padding: 1.5rem;
+              border-radius: 12px;
+              border: 1px solid #2a2a2a;
+              text-align: center;
+            "
+          >
+            <i
+              class="fas fa-user"
+              style="font-size: 2.5rem; color: #f48024; margin-bottom: 0.5rem"
+            ></i>
+            <p style="color: #888; font-size: 0.8rem">Name</p>
+            <p
+              id="profileName"
+              style="color: #fff; font-size: 1.2rem; font-weight: 600"
+            >
+              —
+            </p>
+          </div>
+          <div
+            style="
+              background: #1a1a1a;
+              padding: 1.5rem;
+              border-radius: 12px;
+              border: 1px solid #2a2a2a;
+              text-align: center;
+            "
+          >
+            <i
+              class="fas fa-envelope"
+              style="font-size: 2.5rem; color: #f48024; margin-bottom: 0.5rem"
+            ></i>
+            <p style="color: #888; font-size: 0.8rem">Email</p>
+            <p
+              id="profileEmail"
+              style="color: #fff; font-size: 1.2rem; font-weight: 600"
+            >
+              —
+            </p>
+          </div>
+          <div
+            style="
+              background: #1a1a1a;
+              padding: 1.5rem;
+              border-radius: 12px;
+              border: 1px solid #2a2a2a;
+              text-align: center;
+            "
+          >
+            <i
+              class="fas fa-phone"
+              style="font-size: 2.5rem; color: #f48024; margin-bottom: 0.5rem"
+            ></i>
+            <p style="color: #888; font-size: 0.8rem">Phone</p>
+            <p
+              id="profilePhone"
+              style="color: #fff; font-size: 1.2rem; font-weight: 600"
+            >
+              —
+            </p>
+          </div>
+          <div
+            style="
+              background: #1a1a1a;
+              padding: 1.5rem;
+              border-radius: 12px;
+              border: 1px solid #2a2a2a;
+              text-align: center;
+            "
+          >
+            <i
+              class="fas fa-dumbbell"
+              style="font-size: 2.5rem; color: #f48024; margin-bottom: 0.5rem"
+            ></i>
+            <p style="color: #888; font-size: 0.8rem">Plan</p>
+            <p
+              id="profilePlan"
+              style="color: #fff; font-size: 1.2rem; font-weight: 600"
+            >
+              —
+            </p>
+          </div>
+          <div
+            style="
+              background: #1a1a1a;
+              padding: 1.5rem;
+              border-radius: 12px;
+              border: 1px solid #2a2a2a;
+              text-align: center;
+              grid-column: span 2;
+            "
+          >
+            <i
+              class="fas fa-user-tie"
+              style="font-size: 2.5rem; color: #f48024; margin-bottom: 0.5rem"
+            ></i>
+            <p style="color: #888; font-size: 0.8rem">Coach</p>
+            <p
+              id="profileCoach"
+              style="color: #fff; font-size: 1.2rem; font-weight: 600"
+            >
+              —
+            </p>
+          </div>
+        </div>
+        <div
+          style="
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #2a2a2a;
+          "
+        >
+          <p style="color: #666; font-size: 0.9rem">
+            Member since <span id="profileDate" style="color: #aaa">—</span>
+          </p>
+        </div>
+        <div style="text-align: center; margin-top: 1.5rem">
+          <button id="logoutBtn" class="logout-btn">
+            <i class="fas fa-sign-out-alt"></i> Logout
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="main-footer">
+      <div class="footer-container">
+        <div class="footer-contact">
+          <h3><i class="fas fa-dumbbell"></i> YFC · Yangon Fitness Club</h3>
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>No. 42, Pyay Road, Hlaing Township, Yangon, Myanmar</span>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-phone-alt"></i>
+            <span>+95 9 123 456 789</span>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <span>athenajneo2004@gmail.com</span>
+          </div>
+          <div class="footer-social">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+            <a href="#"><i class="fas fa-map-marked-alt"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-form">
+          <h3>Send us a message</h3>
+          <form id="contactForm">
+            <div class="form-group">
+              <input
+                type="text"
+                id="userName"
+                placeholder="Your Name"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <input
+                type="email"
+                id="userEmail"
+                placeholder="Your Email"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <textarea
+                id="userMessage"
+                rows="4"
+                placeholder="Your Message..."
+                required
+              ></textarea>
+            </div>
+            <button type="submit" class="btn-submit">
+              <i class="fas fa-paper-plane"></i> Send Message
+            </button>
+          </form>
+          <div id="formFeedback" class="form-feedback"></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 YFC · Yangon Fitness Club. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- ========== MODALS ========== -->
+    <div class="modal-overlay" id="trainerModal">
+      <div class="modal-box">
+        <button class="modal-close" id="modalClose">
+          <i class="fas fa-times"></i>
+        </button>
+        <div class="trainer-avatar" id="modalAvatar"><img src="" alt="" /></div>
+        <h2 id="modalName">Coach Name</h2>
+        <div class="modal-title" id="modalTitle">Specialty</div>
+        <p id="modalBio">Full bio appears here.</p>
+      </div>
+    </div>
+
+    <div class="modal-overlay" id="equipModal">
+      <div class="modal-box equip-detail">
+        <button class="modal-close" id="equipModalClose">
+          <i class="fas fa-times"></i>
+        </button>
+        <h2 id="equipModalTitle">Equipment</h2>
+        <div
+          id="equipModalContent"
+          style="
+            color: #ccc;
+            text-align: left;
+            line-height: 1.8;
+            margin-top: 1rem;
+          "
+        ></div>
+      </div>
+    </div>
+
+    <div class="modal-overlay" id="checkoutModal">
+      <div class="modal-box checkout-box">
+        <button class="modal-close" id="checkoutClose">
+          <i class="fas fa-times"></i>
+        </button>
+        <h2 style="color: #f48024; text-align: center; margin-bottom: 1.5rem">
+          <i class="fas fa-shopping-cart"></i> Complete Your Membership
+        </h2>
+        <form id="checkoutForm">
+          <div class="form-group">
+            <input
+              type="text"
+              id="checkoutName"
+              placeholder="Full Name"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <input
+              type="email"
+              id="checkoutEmail"
+              placeholder="Email Address"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <input
+              type="tel"
+              id="checkoutPhone"
+              placeholder="Phone Number"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label
+              style="
+                color: #aaa;
+                font-size: 0.9rem;
+                display: block;
+                margin-bottom: 0.5rem;
+              "
+              >Select Your Coach:</label
+            >
+            <select
+              id="checkoutCoach"
+              required
+              style="
+                width: 100%;
+                padding: 0.8rem 1rem;
+                background: #1a1a1a;
+                border: 1px solid #333;
+                border-radius: 8px;
+                color: #fff;
+                font-size: 0.95rem;
+              "
+            >
+              <option value="">-- Select a Coach --</option>
+              <option value="Coach Min">
+                Trainer Ko Ko Htet Aung - Strength & Conditioning
+              </option>
+              <option value="Coach Thiri">
+                Trainer Sit Aung - Nutrition & Mobility
+              </option>
+              <option value="Coach Zaw">
+                Trainer Chit Lin Phyu - Olympic & Powerlifting
+              </option>
+              <option value="Coach Zumba">Coach Zumba - Zumba & Dance</option>
+              <option value="Coach Hnin">
+                Trainer Khant - Fitness & Mindfulness
+              </option>
+            </select>
+          </div>
+          <div
+            class="form-group"
+            style="
+              text-align: center;
+              padding: 0.8rem;
+              background: #1a1a1a;
+              border-radius: 8px;
+              border: 1px solid #333;
+            "
+          >
+            <span style="color: #aaa">Plan: </span>
+            <span
+              id="checkoutPlanDisplay"
+              style="color: #f48024; font-weight: 600"
+              >Monthly</span
+            >
+            <span style="color: #aaa"> | </span>
+            <span style="color: #aaa">Price: </span>
+            <span
+              id="checkoutPriceDisplay"
+              style="color: #f48024; font-weight: 600"
+              >60,000 MMK</span
+            >
+          </div>
+          <button
+            type="submit"
+            class="btn-submit"
+            style="width: 100%; justify-content: center; margin-top: 0.5rem"
+          >
+            <i class="fas fa-check-circle"></i> Confirm Membership
+          </button>
+        </form>
+        <div id="checkoutFeedback" class="form-feedback"></div>
+      </div>
+    </div>
+
+    <script src="index.js"></script>
+  </body>
+</html>
